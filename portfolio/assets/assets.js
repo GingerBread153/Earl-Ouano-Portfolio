@@ -86,7 +86,7 @@ export const workExperience = [
     {
         title: 'Intern Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: '',
+        description: "",
         dateStarted: 'Feb 2023',
         dateEnded: 'July 2023',
         programLanguagesUsed: [assets.prog_languages.python.title],
@@ -97,7 +97,7 @@ export const workExperience = [
     {
         title: 'Junior Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: '',
+        description: "",
         dateStarted: 'Sept 2023',
         dateEnded: 'July 2025',
         programLanguagesUsed: [assets.prog_languages.cSharp.title, assets.prog_languages.js.title],
@@ -108,7 +108,7 @@ export const workExperience = [
     {
         title: 'Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: '',
+        description: "",
         dateStarted: 'July 2025',
         dateEnded: 'Present',
         programLanguagesUsed: [assets.prog_languages.cSharp.title, assets.prog_languages.js.title],
