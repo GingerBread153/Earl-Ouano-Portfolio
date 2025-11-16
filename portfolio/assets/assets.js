@@ -7,8 +7,13 @@ import cSharp_image from './c-sharp.png';
 import ruby_image from './ruby.png';
 import java_image from './java.png';
 import aws_image from './aws.png';
-import moon_icon from './moon_.png';
+import moon_icon from './moon.png';
 import moon_icon_filled from './moon_filled.png';
+import icon_menu from './icon_menu.png';
+import cross_menu from './cross.png';
+import default_image from './default_image.png';
+import download_icon from './download_icon.png';
+import arrow_right_icon from './arrow_right.png';
 
 
 export const assets = {
@@ -85,7 +90,23 @@ export const assets = {
     aws_image,
     moon_icon,
     moon_icon_filled,
+    icon_menu,
+    cross_menu,
+    default_image,
+    download_icon,
+    arrow_right_icon,
 }
+
+export const languagesData = [
+    assets.prog_languages.c.image,
+    assets.prog_languages.cSharp.image,
+    assets.prog_languages.java.image,
+    assets.prog_languages.js.image,
+    assets.prog_languages.html.image,
+    assets.prog_languages.css.image,
+    assets.prog_languages.python.image,
+    assets.prog_languages.ruby.image,
+]
 
 export const workExperience = [
     {
