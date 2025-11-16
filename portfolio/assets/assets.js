@@ -7,6 +7,9 @@ import cSharp_image from './c-sharp.png';
 import ruby_image from './ruby.png';
 import java_image from './java.png';
 import aws_image from './aws.png';
+import moon_icon from './moon_.png';
+import moon_icon_filled from './moon_filled.png';
+
 
 export const assets = {
     prog_languages: {
@@ -80,6 +83,8 @@ export const assets = {
         },
     },
     aws_image,
+    moon_icon,
+    moon_icon_filled,
 }
 
 export const workExperience = [
