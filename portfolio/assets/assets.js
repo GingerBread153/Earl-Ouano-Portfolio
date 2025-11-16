@@ -80,16 +80,6 @@ export const assets = {
         },
     },
     aws_image,
-
-}
-
-export const profile = {
-    email: 'ouano.mal@gmail.com',
-    workExperience,
-    certifications,
-    linkedIn,
-    university,
-    informations,
 }
 
 export const workExperience = [
@@ -167,3 +157,12 @@ export const informations = {
     ],
     willingToRelocate: true,
 }
+
+export const profile = {
+    email: 'ouano.mal@gmail.com',
+    workExperience,
+    certifications,
+    linkedIn,
+    university,
+    informations,
+};
