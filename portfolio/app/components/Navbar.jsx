@@ -1,16 +1,38 @@
 import { assets } from '@/assets/assets'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 const Navbar = () => {
+
+    const [isScrollPastHeader, setIsScrollPastHeader] = useState(false)
+
+    useEffect(() => {
+        
+        const handleScroll = () => {
+            const threshold = window.innerHeight
+        
+            if (window.scrollY > threshold - 1) {
+                setIsScrollPastHeader(true)
+            } else {
+                setIsScrollPastHeader(false)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    },[])
+
     return (
         <>
-            <nav id='nav' className="sticky top-0 w-full px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
-                <a href="#top">
+            <nav id='nav' className={`sticky top-0 w-full px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScrollPastHeader ? "bg-white/90 backdrop-blur-md shadow-md" : ""}`}>
+                <a href="#head">
                     {/* <Image className="w-28 cursor-pointer mr-14" alt=""/> */}
                 </a>
 
-                <ul className="flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 shadow-sm bg-opacity-50 backdrop-blur-[2px]">
+                <ul className={`flex items-center gap-6 lg:gap-8 rounded-full px-10 py-2 ${isScrollPastHeader ? "" : "bg-opacity-50 backdrop-blur-lg shadow-md"}`}>
                     <li><a href='#head'>Home</a></li>
                     <li><a className='font-Ovo' href='#about'>About</a></li>
                     <li><a className='font-Ovo' href='#work'>Work</a></li>
