@@ -4,8 +4,8 @@ import React from 'react'
 
 const About = () => {
   return (
-    <section id='about' className="w-full px-[12%] py-10 scroll-mt-10">
-        <h2 className='text-center text-4xl font-bold mb-12 font-Ovo'>About Me</h2>
+    <section id='about' className="w-full h-screen px-[12%] py-15 scroll-mt-10">
+        <h2 className='text-center items-center justify-center text-4xl font-bold mb-12 font-Ovo'>About Me</h2>
         <div className='flex flex-col md:flex-row items-center md:items-start justify-center gap-60 max-w-6xl mx-auto'>
             <div className='flex flex-col items-center md:items-start text-center md:text-left max-w-lg'>
                 <Image src={assets.default_image} alt='default_image' height={350} width={350} />

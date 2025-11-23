@@ -1,74 +1,86 @@
 import { workExperience } from '@/assets/assets'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ExperienceCard from './Card/ExperienceCard'
 
-const INITIAL_DISPLAY_COUNT = 1;
-const ITEM_TO_LOAD = 1;
+const INITIAL_DISPLAY_COUNT = 2;
+const ITEMS_TO_LOAD = 1;
 
 const Work = () => {
-
-    const [visibleCount, setVisibleCount] = useState(INITIAL_DISPLAY_COUNT)
-    const loadMoreRef = useRef(null)
-    const sortedExperience = [...workExperience].reverse();
-    const hasMoreToLoad = visibleCount < sortedExperience.length
-
-    useEffect(() => {
-        if (!hasMoreToLoad || !loadMoreRef.current) return
-        
-        const handleObserver = (entries) => {
-            const target = entries[0]
-
-            if (target.isIntersecting) {
-                setVisibleCount(prevCount => Math.min(prevCount + ITEM_TO_LOAD, sortedExperience.length))
-            }
-        }
-
-        const observer = new IntersectionObserver(handleObserver, { rootMargin: '500px', threshold: 0.1 })
+    // 💡 STATE SETUP: Start with 1 visible item for the staggered reveal effect
+    const [visibleCount, setVisibleCount] = useState(INITIAL_DISPLAY_COUNT);
     
-        if (loadMoreRef.current) {
-            observer.observe(loadMoreRef.current)
-        }
+    // 💡 REFS: Only need the ref for the Intersection Observer target
+    const loadMoreRef = useRef(null); 
+    
+    // Data setup (Reverse chronological order)
+    const sortedExperience = [...workExperience].reverse();
+    const hasMoreToLoad = visibleCount < sortedExperience.length;
 
+    // --- INTERSECTION OBSERVER LOGIC ---
+    // This watches the last rendered element and loads more when it enters the viewport.
+    useEffect(() => {
+        // Only run if there are more items to load and the ref element exists
+        if (!hasMoreToLoad || !loadMoreRef.current) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // If the observer target is intersecting (visible), load more items
+                if (entries[0].isIntersecting) {
+                    setVisibleCount(prevCount => 
+                        Math.min(prevCount + ITEMS_TO_LOAD, sortedExperience.length)
+                    );
+                }
+            },
+            { threshold: 0.1 } // Load when 10% of the placeholder is visible
+        );
+
+        observer.observe(loadMoreRef.current);
+
+        // Cleanup function
         return () => {
             if (loadMoreRef.current) {
-                observer.observe(loadMoreRef.current)
+                observer.unobserve(loadMoreRef.current);
             }
-        }
-    }, [visibleCount, hasMoreToLoad])
+        };
+    // Dependencies ensure the observer re-attaches to the newly rendered last item
+    }, [hasMoreToLoad, sortedExperience.length, visibleCount]); 
+    // --- END INTERSECTION OBSERVER LOGIC ---
 
-    
-   
+
     return (
-    <section id='work' className="w-full h-screen px-[12%] py-10 scroll-mt-10" >
+        // 💡 STRUCTURE REVERTED: Standard section flow. Removed h-[300vh], sticky, and overflow.
+        <section id='work' className="w-full px-[8%] py-16 bg-gray-50 scroll-mt-24 relative z-0">
             <h2 className='text-center text-4xl md:text-5xl font-bold text-gray-900 mb-16 font-Ovo'>
                 My <span className="text-[#90d0ed]">Work</span> History
             </h2>
 
             <div className="max-w-4xl mx-auto">
+                {/* Map only the visible portion, using cardIndex for staggered animation */}
                 {sortedExperience.slice(0, visibleCount).map((experience, index) => (
                     <React.Fragment key={index}>
                         <ExperienceCard 
-                            experience={experience}
+                            experience={experience} 
                             cardIndex={index}
                         />
-                    
+                        
+                        {/* 💡 The Load More Ref is attached to the last rendered card placeholder */}
                         {index === visibleCount - 1 && hasMoreToLoad && (
                             <div ref={loadMoreRef} className="text-center py-8">
-                                <p className="text-gray-500 italic">Loading more experiences...</p> 
+                                <p className="text-gray-500 italic">Scroll down to reveal more experiences...</p> 
                             </div>
                         )}
                     </React.Fragment>
                 ))}
                 
-                {/* Optional: Message when all items are loaded */}
-                {/* {!hasMoreToLoad && (
-                    <div className="text-center py-8 text-gray-600">
-                        <p>You've reached the end of my work history!</p>
+                {/* Final Message */}
+                {!hasMoreToLoad && (
+                    <div className="text-center py-8 text-gray-600 font-semibold">
+                        <p>End of Work History</p>
                     </div>
-                )} */}
+                )}
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default Work
