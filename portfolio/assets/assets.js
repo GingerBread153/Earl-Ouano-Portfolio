@@ -80,6 +80,9 @@ export const assets = {
         react: {
             title: 'ReactJS',
         },
+        next: {
+            title: 'Next.js',
+        },
         django: {
             title: 'Django',
         },
@@ -112,7 +115,10 @@ export const workExperience = [
     {
         title: 'Intern Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: "",
+        description: [
+            "Designed and implemented an e-commerce web application using Django, covering both front-end and back-end logic.",
+            "Assisted in developing and executing functional test cases to ensure quality deliverables.",
+        ],
         dateStarted: 'Feb 2023',
         dateEnded: 'July 2023',
         programLanguagesUsed: [assets.prog_languages.python.title],
@@ -123,7 +129,11 @@ export const workExperience = [
     {
         title: 'Junior Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: "",
+        description: [
+            "Contributed to full-stack feature development using C#, ASP.NET MVC, ASP.NET Core, ASP.NET WinForms , JavaScript, and Telerik UI.",
+            "Implemented end-to-end automated test suites using Selenium to improve testing efficiency and ensure application stability.",
+            "Supported continuous integration and system optimization initiatives.",
+        ],
         dateStarted: 'Sept 2023',
         dateEnded: 'July 2025',
         programLanguagesUsed: [assets.prog_languages.cSharp.title, assets.prog_languages.js.title],
@@ -134,7 +144,11 @@ export const workExperience = [
     {
         title: 'Software Developer',
         company: 'Advanced World Systems, Inc.',
-        description: "",
+        description: [
+            "Maintain and enhance client web systems with focus on front-end performance and UI improvements.",
+            "Develop and deploy new features in C# ASP.NET Core Winforms and Blazor, ensuring clean architecture and maintainable code.",
+            "Collaborate with cross-functional teams to diagnose and resolve complex software issues, improving system stability.",
+        ],
         dateStarted: 'July 2025',
         dateEnded: 'Present',
         programLanguagesUsed: [assets.prog_languages.cSharp.title, assets.prog_languages.js.title],
